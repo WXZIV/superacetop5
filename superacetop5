@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+  <meta name="format-detection" content="telephone=no">
+  <title>JDB Spin Masters</title>
+  <style>
+    :root{ --vh:100vh; }
+    /* Prefer modern small viewport units when available */
+    @supports(height:100svh){ :root{ --vh:100svh; } }
+
+    html,body{
+      height:100%;
+      margin:0;
+      background:#000;
+      /* Let the page scroll if the browser needs to (avoids some boost triggers) */
+      overflow:auto;
+      -webkit-text-size-adjust:100%;
+      text-size-adjust:100%;
+    }
+
+    .frame{
+      position:fixed;
+      top:    env(safe-area-inset-top);
+      right:  env(safe-area-inset-right);
+      bottom: env(safe-area-inset-bottom);
+      left:   env(safe-area-inset-left);
+      width:  calc(100% - env(safe-area-inset-left) - env(safe-area-inset-right));
+      height: calc(var(--vh) - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+      display:block;
+      border:0;
+      background:#000;
+      /* Harmless hints; some builds respect these on subdocs */
+      -webkit-text-size-adjust:100%;
+      text-size-adjust:100%;
+    }
+  </style>
+</head>
+<body>
+  <iframe
+    class="frame"
+    title="JDB Spin Masters Leaderboard"
+    src="https://script.google.com/macros/s/AKfycbxtgC2XQy3xepJlt4zbenH3gHq9gJeUMUeazpHiGD71OIqVg-BGIXUoxurTnoQpzWQB/exec"
+    sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
+    referrerpolicy="no-referrer"
+    allow="clipboard-read; clipboard-write"
+    loading="eager">
+  </iframe>
+
+  <script>
+    // Robust 100vh fix using visualViewport when available
+    (function () {
+      const setVH = () => {
+        const vv = window.visualViewport;
+        const h = vv ? vv.height : window.innerHeight;
+        document.documentElement.style.setProperty('--vh', h + 'px');
+      };
+      setVH();
+      window.addEventListener('resize', setVH, {passive:true});
+      if (window.visualViewport) {
+        window.visualViewport.addEventListener('resize', setVH, {passive:true});
+      }
+    }());
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
